@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="actions">
+        <button class="btn btn-accept">Add User</button>
+        <button class="btn btn-info">Actions</button>
+    </div>
+    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="center-align">Enabled</th>
+                <th class="center-align">Activated</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>User Group</th>
+                <th>Last Visit</th>
+                <th>Registered</th>
+                <th>ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>
+                    <input type="checkbox" (click)="selectUser(user.id)">
+                </td>
+                <td class="center-align">
+                    <ng-container *ngIf="user.enabled; else disabled">
+                        <img src="./../../../assets/Icons/correct.png" alt="">
+                    </ng-container>
+                    <ng-template #disabled>
+                        <img src="./../../../assets/Icons/empty.png" alt="">
+                    </ng-template>
+                </td>
+                <td class="center-align">
+                    <ng-container *ngIf="user.actived; else actived">
+                        <img src="./../../../assets/Icons/correct.png" alt="">
+                    </ng-container>
+                    <ng-template #actived>
+                        <img src="./../../../assets/Icons/empty.png" alt="">
+                    </ng-template>
+                </td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.usergroup }}</td>
+                <td>{{ user.lastVisit }}</td>
+                <td>{{ user.registered }}</td>
+                <td>{{ user.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
